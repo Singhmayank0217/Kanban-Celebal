@@ -70,7 +70,7 @@ const SortableList = ({
     )
   ) {
     console.log("Delete list with id:", list.id);
-    onDeleteList(list.id); // ✅ Call the parent deletion handler
+    onDeleteList(list.id); 
   }
   setShowDropdown(false);
 };
