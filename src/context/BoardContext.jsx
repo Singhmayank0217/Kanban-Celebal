@@ -40,11 +40,8 @@ export const BoardProvider = ({ children }) => {
       if (storedBoards) {
         setBoards(JSON.parse(storedBoards));
       } else {
-        setBoards(initialBoards);
-        localStorage.setItem(
-          `kanban-boards-${user.id}`,
-          JSON.stringify(initialBoards)
-        );
+        setBoards([]);
+        localStorage.setItem(`kanban-boards-${user.id}`, JSON.stringify([]));
       }
     } else {
       setBoards([]);

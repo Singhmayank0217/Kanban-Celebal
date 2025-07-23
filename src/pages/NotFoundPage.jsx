@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
-import MainLayout from "../components/layout/MainLayout";
 
 const NotFoundPage = () => {
   return (
-    <MainLayout>
+    <>
       <div className="flex flex-col items-center justify-center min-h-[calc(100vh-200px)]">
         <h1 className="text-6xl font-bold text-gray-900 dark:text-white mb-4">
           404
@@ -18,7 +17,7 @@ const NotFoundPage = () => {
           Go back home
         </Link>
       </div>
-    </MainLayout>
+    </>
   );
 };
 

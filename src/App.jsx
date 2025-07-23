@@ -14,12 +14,14 @@ import DemoPage from "./pages/DemoPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 const ProtectedRoute = ({ children }) => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
 
+  if (loading) {
+    return <div>Wait to load data...</div>;
+  }
   if (!user) {
     return <Navigate to="/login" replace />;
   }
-
   return children;
 };
 

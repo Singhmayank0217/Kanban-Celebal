@@ -125,8 +125,7 @@ const BoardPage = () => {
     if (data) {
       setBoardData(data);
     } else {
-      setBoardData(initialBoardData);
-      updateBoardData(id, initialBoardData);
+      setBoardData(null);
     }
   }, [id, getBoard, getBoardData, updateBoardData]);
 
@@ -374,12 +373,8 @@ const BoardPage = () => {
     cardIdsToDelete.forEach((cardId) => {
       delete updatedCards[cardId];
     });
-
-    // Remove the list
     const updatedLists = { ...boardData.lists };
     delete updatedLists[listId];
-
-    // Remove from list order
     const updatedListOrder = boardData.listOrder.filter((id) => id !== listId);
 
     const updatedData = {
@@ -488,10 +483,10 @@ const BoardPage = () => {
             <SortableContext items={boardData.listOrder}>
               {boardData.listOrder.map((listId) => {
                 const list = boardData.lists[listId];
-                const cards = list.cardIds.map(
-                  (cardId) => boardData.cards[cardId]
-                );
-
+                if (!list) return null;
+                const cards = list.cardIds
+                  .map((cardId) => boardData.cards[cardId])
+                  .filter(Boolean);
                 return (
                   <SortableList
                     key={list.id}
