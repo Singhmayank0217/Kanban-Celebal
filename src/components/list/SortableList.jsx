@@ -18,6 +18,7 @@ const SortableList = ({
   onEditCard,
   onRenameList,
   onCreateCard,
+  onDeleteList ,
   onSortCards,
   disabled = false,
 }) => {
@@ -63,15 +64,17 @@ const SortableList = ({
   };
 
   const handleDelete = () => {
-    if (
-      window.confirm(
-        `Are you sure you want to delete the list "${list.title}" and all its cards?`
-      )
-    ) {
-      console.log("Delete list with id:", list.id);
-    }
-    setShowDropdown(false);
-  };
+  if (
+    window.confirm(
+      `Are you sure you want to delete the list "${list.title}" and all its cards?`
+    )
+  ) {
+    console.log("Delete list with id:", list.id);
+    onDeleteList(list.id); // ✅ Call the parent deletion handler
+  }
+  setShowDropdown(false);
+};
+
 
   return (
     <div className="w-full max-w-sm">
